@@ -12,7 +12,15 @@ from argparse import ArgumentParser
 print(datetime.datetime.now())
 v = vna()
 
+# Start data taking -> now that this is done in set_param.py
+#v.output_on()
+#v.trigger_single()
+#sleep(exp_DAQ_time+2.)  # Wait until the sweep ends
+
+# Fetch the outcome
 freq, data = v.get_data()
+
+# Shut down
 sleep(1)
 v.trigger_cont()
 v.output_off()

@@ -37,6 +37,11 @@ parser.add_argument('-ch',
                     default=100001,
                     help='the number of freqency channles. defalut=100001')
 
+parser.add_argument('-ave',
+                    type=int,
+                    default=1,
+                    help='Number of average. defalut=1')
+
 args = parser.parse_args()
 
 Sparam = args.S_param
@@ -45,6 +50,7 @@ f_span = args.f_span
 power = args.power
 IFband = args.IFband
 ch = args.ch
+nave = args.ave
 
 print(datetime.datetime.now())
 
@@ -70,6 +76,15 @@ print('sweep point', v.get_sweep_points())
 v.set_bandwidth(IFband)
 print('IF bandwidth', v.get_bandwidth()/1e3, 'kHz')
 
+if nave > 1 :
+    v.set_average_mode(1)
+    v.set_average_count(nave)
+    print('Number of average', v.get_average_count())
+
+# Start data taking
+exp_DAQ_time = nave * ch / (IFband+0.) # in second
+print("Expected DAQ time [sec]", exp_DAQ_time)
+
 v.output_on()
 v.trigger_single()
-sleep(3)
+sleep(exp_DAQ_time+2.)
