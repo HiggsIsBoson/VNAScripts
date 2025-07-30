@@ -1,4 +1,9 @@
 #!/usr/bin/env python                                                                             
+
+#
+# Originally "set_param.py"
+#
+
 import datetime
 from vna_solib import vna
 from time import sleep

@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+#
+# Originally measure_swp_vna.py
+#
+
 import datetime
 from vna_solib import vna
 from time import strftime, sleep
