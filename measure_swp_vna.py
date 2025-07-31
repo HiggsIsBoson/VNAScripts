@@ -6,8 +6,11 @@
 
 import datetime
 from vna_solib import vna
-from time import sleep
-from numpy import array
+from time import strftime, sleep
+from numpy import log10, angle, pi, array
+import sys
+import os
+
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
@@ -111,6 +114,8 @@ v.output_off()
 # Write 
 if fname is "None" :
     fname = strftime('%Y-%m%d-%H%M%S.dat') 
+
+print("Output file: ", fname)
 
 ofs = open(fname, 'w')
 print('## frequency[GHz]  I  Q  LogM[dB] Phase[deg]', file=ofs)
